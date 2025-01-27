@@ -1,4 +1,4 @@
-name: CI
+name: Deploy on Pinata
 
 on:
   push:
@@ -6,11 +6,18 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Run a simple script
-      run: echo "Hello, GitHub Actions!"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Pinata
+        uses: anantaramas/ipfs-pinata-deploy-action@v1.6.4
+        with:
+          pin-name: 'Hello'
+          path: './src'
+          pinata-api-key: ${{ secrets.PINATA_API_KEY }}
+          pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY }}
+          verbose: true
+          remove-old: true
