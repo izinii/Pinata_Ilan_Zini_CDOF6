@@ -1,4 +1,4 @@
-name: Deploy on Pinata
+name: Deploy to IPFS via Pinata
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       - name: Deploy to Pinata
         uses: anantaramas/ipfs-pinata-deploy-action@v1.6.4
         with:
-          pin-name: 'Hello'
+          pin-name: 'Tic Tac Toe'
           path: './src'
           pinata-api-key: ${{ secrets.PINATA_API_KEY }}
           pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY }}
